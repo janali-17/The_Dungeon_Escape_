@@ -25,31 +25,40 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        float move = Input.GetAxisRaw("Horizontal");
-        if (Input.GetKeyDown(KeyCode.Space) && _ground == true)
-        {
-            _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, _jumpForce);
-            _ground = false;
-            _resetJumpNeeded = true;
-            StartCoroutine(resetJumpNeeded());
-        }
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,0.6f,_layerMask);
-        Debug.DrawLine(transform.position, Vector2.down * 0.6f,Color.green);
-        if (hit.collider != null)
-        {
-            Debug.Log("Hit " +  hit.collider.name);
-            if(_resetJumpNeeded == false) 
-            {
-                _ground = true;
-            }
-            
-        }
-        _rigidbody2d.velocity = new Vector2(move * _speed, _rigidbody2d.velocity.y);
+        Movement();
+        
+       
 
     }
+    private void Movement()
+    {
+        float move = Input.GetAxisRaw("Horizontal");
+        if (Input.GetKeyDown(KeyCode.Space) && _IsGrounded() == true)
+        {
+            _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, _jumpForce);
+            StartCoroutine(resetJumpNeeded());
+        }
+
+        _rigidbody2d.velocity = new Vector2(move * _speed, _rigidbody2d.velocity.y);
+    }
+    private bool _IsGrounded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.6f, _layerMask);
+        if (hit.collider != null)
+        {
+            if(_resetJumpNeeded == false)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     IEnumerator resetJumpNeeded()
     {
+        _resetJumpNeeded = true;
          yield return new WaitForSeconds(1.0f);
         _resetJumpNeeded = false;
     }
+
 }
