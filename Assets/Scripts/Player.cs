@@ -29,6 +29,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movement();
+        
+        if(Input.GetMouseButtonDown(0) && _IsGrounded() == true) 
+        {
+            _playerAnimation.Attack();
+        }
     }
     private void Movement()
     {
