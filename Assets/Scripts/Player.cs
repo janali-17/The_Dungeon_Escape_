@@ -18,11 +18,13 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigidbody2d;
     private PlayerAnimation _playerAnimation;
     private SpriteRenderer _playerSprite;
+    private SpriteRenderer _swordSprite;
     void Start()
     {
         _rigidbody2d = GetComponent<Rigidbody2D>();
         _playerAnimation = GetComponent<PlayerAnimation>();
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
+        _swordSprite = transform.GetChild(1).GetComponent<SpriteRenderer>();
     }
 
 
@@ -76,10 +78,12 @@ public class Player : MonoBehaviour
         if (move > 0)
         {
             _playerSprite.flipX = false;
+             _swordSprite.flipY = false;
         }
         else if (move < 0)
         {
             _playerSprite.flipX = true;
+            _swordSprite.flipY = true;
         }
 
     }
