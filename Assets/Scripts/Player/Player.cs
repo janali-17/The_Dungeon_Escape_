@@ -59,7 +59,6 @@ public class Player : MonoBehaviour
         {
             if(_resetJumpNeeded == false)
             {
-                Debug.Log("Jump anim false");
                 _playerAnimation.Jump(false);
                 return true;
             }
