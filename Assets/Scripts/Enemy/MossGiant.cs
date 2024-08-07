@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MossGiant : Enemy
 {
-    private bool isIdle;
+
     private Vector3 _currentTarget;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -17,8 +17,8 @@ public class MossGiant : Enemy
     }
     public override void Update()
     {
-        isIdle = _animator.GetCurrentAnimatorStateInfo(0).IsName("Idle_anim");
-        if(isIdle)
+        
+        if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle_anim"))
         {
             return;
         }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class Player : MonoBehaviour
 {
@@ -55,8 +56,10 @@ public class Player : MonoBehaviour
     private bool _IsGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.6f, _layerMask);
+        Debug.DrawRay(transform.position, Vector2.down, Color.green);
         if (hit.collider != null)
         {
+            Debug.Log("Grounded");
             if(_resetJumpNeeded == false)
             {
                 _playerAnimation.Jump(false);
