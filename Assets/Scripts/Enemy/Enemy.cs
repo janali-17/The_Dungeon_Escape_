@@ -12,11 +12,45 @@ public abstract class Enemy : MonoBehaviour
     protected int gems;
     [SerializeField]
     protected Transform WaypointA,WaypointB;
-    protected Vector3 CurrentPos;
 
-    public virtual void Attack()
+    protected Vector3 currentTarget;
+    protected Animator anim;
+    protected SpriteRenderer sprite;
+   
+    public virtual void Init()
     {
-        Debug.Log("THis is :" + gameObject.name);
+        anim = GetComponentInChildren<Animator>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
-    public abstract void Update();
+    private void Start()
+    {
+        Init();
+    }
+    public virtual void Update()
+    {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle_anim"))
+        {
+            return;
+        }
+        Movement();
+    }
+    public virtual void Movement()
+    {
+
+        if (transform.position == WaypointA.position)
+        {
+            currentTarget = WaypointB.position;
+            sprite.flipX = false;
+        }
+        else if (transform.position == WaypointB.position)
+        {
+            currentTarget = WaypointA.position;
+            sprite.flipX = true;
+        }
+        transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
+        if (transform.position == currentTarget)
+        {
+            anim.SetTrigger("Idle");
+        }
+    }
 }
