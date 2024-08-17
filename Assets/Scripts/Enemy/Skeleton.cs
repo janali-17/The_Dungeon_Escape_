@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Skeleton : Enemy , IDamageable
@@ -10,6 +11,22 @@ public class Skeleton : Enemy , IDamageable
     {
         base.Init();
         Health = base.health;
+    }
+    public override void Movement()
+    {
+        base.Movement();
+
+        Vector3 Direction = Player.transform.localPosition - transform.localPosition;
+        Debug.Log("Direction" + Direction);
+        if (Direction.x < 0 && anim.GetBool("InCombat") == true)
+        {   
+            sprite.flipX = true;
+        }
+        else if(Direction.x > 0 && anim.GetBool("InCombat") == true)
+        {
+            sprite.flipX = false;
+        }
+        
     }
     public void Damage()
     {
