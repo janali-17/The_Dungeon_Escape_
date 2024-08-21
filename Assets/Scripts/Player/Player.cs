@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,IDamageable
 {
     // Variables
     [SerializeField]
@@ -89,5 +89,10 @@ public class Player : MonoBehaviour
         }
 
     }
+    public int Health { get; set; }
 
+    public void Damage()
+    {
+        Debug.Log("Player::Damage");
+    }
 }

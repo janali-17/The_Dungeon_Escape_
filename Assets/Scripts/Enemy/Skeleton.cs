@@ -17,7 +17,6 @@ public class Skeleton : Enemy , IDamageable
         base.Movement();
 
         Vector3 Direction = Player.transform.localPosition - transform.localPosition;
-        Debug.Log("Direction" + Direction);
         if (Direction.x < 0 && anim.GetBool("InCombat") == true)
         {   
             sprite.flipX = true;
