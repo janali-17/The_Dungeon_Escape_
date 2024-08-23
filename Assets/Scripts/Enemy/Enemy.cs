@@ -4,16 +4,18 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    // Variables
     [SerializeField]
     protected int health;
     [SerializeField]
     protected float speed;
     [SerializeField]
     protected int gems;
+    protected bool isHit = false;
+ 
+    // Handles
     [SerializeField]
     protected Transform WaypointA,WaypointB;
-    protected bool isHit = false;
-
     protected Vector3 currentTarget;
     protected Animator anim;
     protected SpriteRenderer sprite;

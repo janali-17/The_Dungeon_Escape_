@@ -12,14 +12,16 @@ public class Player : MonoBehaviour,IDamageable
     private float _jumpForce = 5.0f;
     [SerializeField]
     private bool _resetJumpNeeded = false; 
+    private bool _isGrounded = false;
+
+    //Handles
     [SerializeField]
     private LayerMask _layerMask;
-    private bool _isGrounded = false;
-    //Handles
     private Rigidbody2D _rigidbody2d;
     private PlayerAnimation _playerAnimation;
     private SpriteRenderer _playerSprite;
     private SpriteRenderer _swordSprite;
+
     void Start()
     {
         _rigidbody2d = GetComponent<Rigidbody2D>();
