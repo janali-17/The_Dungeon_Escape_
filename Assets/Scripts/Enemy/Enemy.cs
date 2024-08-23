@@ -12,6 +12,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     protected int gems;
     protected bool isHit = false;
+    protected bool isDead = false;
  
     // Handles
     [SerializeField]
@@ -37,7 +38,11 @@ public abstract class Enemy : MonoBehaviour
         {
             return;
         }
-        Movement();
+        if(isDead == false)
+        {
+            Movement();
+        }
+        
     }
     public virtual void Movement()
     {

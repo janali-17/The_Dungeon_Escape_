@@ -12,6 +12,9 @@ public class Spider : Enemy , IDamageable
         base.Init();
         Health = base.health;
     }
+    public override void Update()
+    {
+    }
     public override void Movement()
     {
 
@@ -21,7 +24,8 @@ public class Spider : Enemy , IDamageable
         health--;
         if(health < 1)
         {
-            Destroy(this.gameObject);
+            isDead = true;
+            anim.SetTrigger("Death");
         }
     
     }
