@@ -60,6 +60,10 @@ public class Shop_Keeper : MonoBehaviour
         
         if(_player.Diamond >= _costItem)
         {
+            if(_currentItem == 2)
+            {
+                GameManager.Instance.HasKey = true;
+            }
             _player.Diamond -= _costItem;
             Debug.Log("U have purchased :" + _currentItem);
             Debug.Log("Remaining Diamonds :" + _player.Diamond);
