@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615606d1e9dd4c74cb863db4c23fd51f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gems: 1
 --- !u!95 &2103032614515214785
 Animator:
   serializedVersion: 3
