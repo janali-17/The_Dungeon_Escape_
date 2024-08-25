@@ -13,7 +13,7 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField]
     private bool _resetJumpNeeded = false; 
     private bool _isGrounded = false;
-    public int Diamond;
+    public int Diamond = 0;
 
     //Handles
     [SerializeField]
