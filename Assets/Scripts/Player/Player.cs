@@ -62,7 +62,7 @@ public class Player : MonoBehaviour,IDamageable
         Debug.DrawRay(transform.position, Vector2.down, Color.green);
         if (hit.collider != null)
         {
-            Debug.Log("Grounded");
+            //Debug.Log("Grounded");
             if(_resetJumpNeeded == false)
             {
                 _playerAnimation.Jump(false);
