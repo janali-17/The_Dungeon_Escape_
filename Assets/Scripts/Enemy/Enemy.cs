@@ -23,14 +23,12 @@ public abstract class Enemy : MonoBehaviour
     protected Player Player;
     [SerializeField]
     protected GameObject DiamondPrefab;
-    protected Diamond _diamond;
 
     public virtual void Init()
     {
         anim = GetComponentInChildren<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        _diamond = GameObject.Find("Diamond").GetComponent<Diamond>();
     }
     private void Start()
     {
