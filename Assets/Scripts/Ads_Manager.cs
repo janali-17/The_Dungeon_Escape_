@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-public class RewardedAdDisplay : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
+public class Ads_Manager: MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     public string myGameIdAndroid = "YOUR_GAME_ID_HERE";
     public string myGameIdIOS = "YOUR_GAME_ID_HERE";
@@ -32,6 +32,14 @@ public class RewardedAdDisplay : MonoBehaviour, IUnityAdsInitializationListener,
     void Update()
     {
 
+    }
+    public void LoadAd()
+    {
+        Advertisement.Load(myAdUnitId,this);
+    }
+    public void ShowAd()
+    {
+        Advertisement.Show(myAdUnitId,this);
     }
 
     public void OnInitializationComplete()
