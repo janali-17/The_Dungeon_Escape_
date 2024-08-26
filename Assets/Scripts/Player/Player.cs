@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour,IDamageable
 {
@@ -39,17 +39,17 @@ public class Player : MonoBehaviour,IDamageable
     {
         Movement();
         
-        if(Input.GetMouseButtonDown(0) && _IsGrounded() == true) 
+        if(CrossPlatformInputManager.GetButtonDown("A_Button") && _IsGrounded() == true) 
         {
             _playerAnimation.Attack();
         }
     }
     private void Movement()
     {
-        float move = Input.GetAxisRaw("Horizontal");
+        float move = CrossPlatformInputManager.GetAxis("Horizontal");
         _isGrounded = _IsGrounded();
         Flip(move);
-        if (Input.GetKeyDown(KeyCode.Space) && _IsGrounded() == true)
+        if ((Input.GetKeyDown(KeyCode.Space)|| CrossPlatformInputManager.GetButtonDown("B_Button")) && _IsGrounded() == true)
         {
             _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, _jumpForce);
             StartCoroutine(resetJumpNeeded());
