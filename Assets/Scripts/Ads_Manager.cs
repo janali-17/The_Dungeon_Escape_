@@ -90,5 +90,11 @@ public class Ads_Manager: MonoBehaviour, IUnityAdsInitializationListener, IUnity
     {
         adCompleted = showCompletionState == UnityAdsShowCompletionState.COMPLETED;
         Debug.Log("Ad Completed: " + adUnitId);
+
+        if (myAdUnitId == adUnitId && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
+        {
+                GameManager.Instance.player.AddGems(100);
+                Debug.Log("Reward granted: 100 gems");
+        }
     }
 } // <--- This bracket was missing
