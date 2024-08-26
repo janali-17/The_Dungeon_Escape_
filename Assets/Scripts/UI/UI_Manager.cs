@@ -22,8 +22,15 @@ public class UI_Manager : MonoBehaviour
     private Text _playerGemCount;
     [SerializeField]
     private Image _selectionImage;
+    [SerializeField]
+    private Text _gemCountText;
+    [SerializeField]
+    private Image[] _LivesUnit;
 
-
+    private void Awake()
+    {
+        _instance = this;
+    }
     public void OpenShop(int gemCount)
     {
         _playerGemCount.text = " " + gemCount + "G";
@@ -32,9 +39,19 @@ public class UI_Manager : MonoBehaviour
     {
         _selectionImage.rectTransform.anchoredPosition = new Vector2(_selectionImage.rectTransform.anchoredPosition.x, Ypos);
     }
-
-    private void Awake()
+   
+    public void GemCount(int GemCount)
     {
-        _instance = this;
+        _gemCountText.text = "" + GemCount + "G";
+    }
+    public void UpdateLives(int LivesRemaining)
+    {
+        for(int i = 0; i <= LivesRemaining;i++)
+        {
+            if(i == LivesRemaining)
+            {
+                _LivesUnit[i].enabled = false;
+            }
+        }
     }
 }

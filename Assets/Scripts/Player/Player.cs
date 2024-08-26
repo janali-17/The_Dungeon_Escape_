@@ -14,6 +14,8 @@ public class Player : MonoBehaviour,IDamageable
     private bool _resetJumpNeeded = false; 
     private bool _isGrounded = false;
     public int Diamond = 0;
+    private bool isDead = false;
+    public int Health { get; set; }
 
     //Handles
     [SerializeField]
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour,IDamageable
         _playerAnimation = GetComponent<PlayerAnimation>();
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
         _swordSprite = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        Health = 4;
     }
 
 
@@ -92,10 +95,25 @@ public class Player : MonoBehaviour,IDamageable
         }
 
     }
-    public int Health { get; set; }
+
 
     public void Damage()
     {
+        if (isDead == true)
+        { return; }
         Debug.Log("Player::Damage");
+        Health--;
+        UI_Manager.Instance.UpdateLives(Health);
+
+        if (Health < 1)
+        {
+            isDead = true;
+            _playerAnimation.Death();
+        }
+    }
+    public void AddGems(int gems)
+    {
+        Diamond += gems;
+        UI_Manager.Instance.GemCount(Diamond);
     }
 }
