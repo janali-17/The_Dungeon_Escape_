@@ -100,6 +100,7 @@ public class Ads_Manager : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLi
             if (GameManager.Instance != null && GameManager.Instance.player != null)
             {
                 GameManager.Instance.player.AddGems(100);
+                UI_Manager.Instance.OpenShop(GameManager.Instance.player.Diamond);
                 Debug.Log("Reward granted: 100 gems");
             }
             else

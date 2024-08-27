@@ -65,6 +65,7 @@ public class Shop_Keeper : MonoBehaviour
                 GameManager.Instance.HasKey = true;
             }
             _player.Diamond -= _costItem;
+            UI_Manager.Instance.GemCount(_player.Diamond);
             Debug.Log("U have purchased :" + _currentItem);
             Debug.Log("Remaining Diamonds :" + _player.Diamond);
             Shop.SetActive(false);
