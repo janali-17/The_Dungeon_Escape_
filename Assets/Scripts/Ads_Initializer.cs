@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.IO.LowLevel.Unsafe;
+using UnityEngine;
 using UnityEngine.Advertisements;
 
 public class Ads_Initializer : MonoBehaviour, IUnityAdsInitializationListener
@@ -32,6 +33,7 @@ public class Ads_Initializer : MonoBehaviour, IUnityAdsInitializationListener
     public void OnInitializationComplete()
     {
         Debug.Log("Unity Ads initialization complete.");
+        Advertisement.Load(_gameId);
     }
 
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)

@@ -19,11 +19,19 @@ public class GameManager : MonoBehaviour
 
     public bool HasKey { get; set; }
     public Player player {  get; private set; }
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        if (player == null)
+        {
+            Debug.Log("Player in the GameManager is Null");
+        }
+    }
 
     private void Awake()
     {
       _instance = this;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+      
     }
 
 }

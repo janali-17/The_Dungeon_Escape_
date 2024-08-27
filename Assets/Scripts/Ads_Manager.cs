@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-public class Ads_Manager: MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
+public class Ads_Manager : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     public string myGameIdAndroid = "YOUR_GAME_ID_HERE";
     public string myGameIdIOS = "YOUR_GAME_ID_HERE";
@@ -35,25 +35,28 @@ public class Ads_Manager: MonoBehaviour, IUnityAdsInitializationListener, IUnity
     }
     public void LoadAd()
     {
-        Advertisement.Load(myAdUnitId,this);
+        Advertisement.Load(myAdUnitId, this);
     }
     public void ShowAd()
     {
-        Advertisement.Show(myAdUnitId,this);
+        Advertisement.Show(myAdUnitId, this);
+        LoadAd();
     }
 
-    public void OnInitializationComplete()
-    {
-        Debug.Log("Unity Ads initialization complete.");
-        Advertisement.Load(myAdUnitId, this);
-    }
+    /*   public void OnInitializationComplete()
+       {
+           Debug.Log("Unity Ads initialization complete.");
+           Advertisement.Load(myAdUnitId, this);
+       }
 
-    public void OnInitializationFailed(UnityAdsInitializationError error, string message)
-    {
-        myAdStatus = message;
-        Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
-    }
+       public void OnInitializationFailed(UnityAdsInitializationError error, string message)
+       {
+           myAdStatus = message;
+           Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
+       }*/
 
+
+    // Load Call Back
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
         Debug.Log("Ad Loaded: " + adUnitId);
@@ -68,7 +71,7 @@ public class Ads_Manager: MonoBehaviour, IUnityAdsInitializationListener, IUnity
         Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
 
     }
-
+    // Show Call Back
     public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
     {
         myAdStatus = message;
@@ -93,8 +96,18 @@ public class Ads_Manager: MonoBehaviour, IUnityAdsInitializationListener, IUnity
 
         if (myAdUnitId == adUnitId && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
+            Debug.Log("100 gems added");
+            if (GameManager.Instance != null && GameManager.Instance.player != null)
+            {
                 GameManager.Instance.player.AddGems(100);
                 Debug.Log("Reward granted: 100 gems");
+            }
+            else
+            {
+                Debug.LogError("Failed to grant reward: GameManager or player is null.");
+            }
+
         }
     }
-} // <--- This bracket was missing
+}
+  
