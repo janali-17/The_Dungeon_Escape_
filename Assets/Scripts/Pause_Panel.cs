@@ -10,7 +10,7 @@ public class Pause_Panel : MonoBehaviour
     private Animator _animator;
     private void Start()
     {
-        _animator = transform.GetChild(2).GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
         _animator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
     
